@@ -1,7 +1,7 @@
 library(ggplot2)
 
 plot_variables <- function(chemin_dossier, df) {
-
+  # Fonction qui représente graphiquement une série de données
   for (i in 2:ncol(df)) {
     p <- ggplot(data = df,
                 aes_string(x = names(df)[1], y = names(df)[i])) +
