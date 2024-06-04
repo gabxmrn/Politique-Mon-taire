@@ -140,7 +140,7 @@ for (i in 2:ncol(var_endo)) {
   print(specific_eqn_result)
 
   # Validation du modèle
-  residuals <- residuals(model_var)
-  model_var_validation(residuals[, names(var_endo)[i]],
-                       names(var_endo)[i], "Output/VAR1/")
+  #residuals <- residuals(model_var)
+  #model_var_validation(residuals[, names(var_endo)[i]],
+                       #names(var_endo)[i], "Output/VAR1/")
 }

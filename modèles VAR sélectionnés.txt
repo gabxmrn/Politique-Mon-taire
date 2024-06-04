@@ -1,0 +1,20 @@
+Modèle 1 - Argent
+    Nombre de retards optimaux : 6
+    Variables explicatives :
+        FED_ER : mesure des politiques monétaires (on ne prend pas le upper, lower bound ni le taux 10 ans car corrélation trop importante)
+        M2 : mesure des politiques monétaires (M3 tjrs moins explicatif -> moins sensibles aux mouvements institutionnels)
+        NFP : métal utilisé dans la production de biens de l'industrie
+        VIX : métal utilisé dans la production de biens de l'industrie
+    R² ajusté : 0,13
+    Validation du modèle :
+        Résidus : pic dans la valeur des résidus autour de 2011
+        Ljung Box : p-value > 5% donc pas d'autocorrélation des résidus
+    Relation de LT :
+        On ne peut garder que l'argent et M2 pour le test car les séries doivent être I1
+        Eigenvalue : stat de test > seuils donc le range de la matrice est inférieur ou égal à 1
+    Relation causale de Granger :
+        Argent : causée par NFP au seuil de 10%, M2 au seuil de 5%
+        VIX : causée par M2 au seuil de 1%
+        NFP : causée par argent au seuil de 5%, VIX au seuil de 1%
+        M2 : causée par argent au seuil de 5%, VIX au seuil 5%
+        FED_ER : causée par VIX au seuil de 1%, NFP au seuil de 5% et M2 au seuil de 5%
