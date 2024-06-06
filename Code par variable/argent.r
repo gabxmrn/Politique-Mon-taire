@@ -62,6 +62,8 @@ model_var_validation(residuals[, nom_variable],
     - FED_LB / UB / ER
     - NFP
     - VIX
+    - Blé
+    - Cacao
 "
 data_statio_coint <- data[, c(nom_variable, "M2")]
 

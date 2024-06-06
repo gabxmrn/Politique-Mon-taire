@@ -18,3 +18,20 @@ Modèle 1 - Argent
         NFP : causée par argent au seuil de 5%, VIX au seuil de 1%
         M2 : causée par argent au seuil de 5%, VIX au seuil 5%
         FED_ER : causée par VIX au seuil de 1%, NFP au seuil de 5% et M2 au seuil de 5%
+
+Modèle 2 - Blé
+    Nombre de retards optimaux : 9
+    Variables explicatives :
+        FED_ER : mesure des politiques monétaires (on ne prend pas le upper, lower bound ni le taux 10 ans car corrélation trop importante)
+        VIX : indice de la peur -> blé essentiel pour se nourrir, quand on est inquiet, on stock
+    R² : 0.992
+    R² ajusté : 0.9915
+    Validation du modèle :
+        Résidus : pas mal de résidus mais compris dans un interval
+        Ljung Box : p-value > 5% donc pas d'autocorrélation des résidus
+    Relation de LT
+        La série du blé est I(0) donc on ne peut pas le faire
+    Relation causale de Granger :
+        Blé : rien
+        VIX : rien
+        FED_ER : causé par le VIX au seuil de 1%

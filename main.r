@@ -48,7 +48,7 @@ print(statio_var_endo_2)
     Or -> 0.01
     Argent -> 0.01
     Cuivre -> 0.01
-    Caco -> série originelle stationnaire au seuil de 5%
+    Cacao -> série originelle stationnaire au seuil de 5%
     Blé -> série originelle stationnaire au seuil de 5%
     Soja -> 0.01
     Maïs -> 0.0101
