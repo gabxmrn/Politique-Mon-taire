@@ -95,6 +95,94 @@ Modèle 6 - WTI
         US10Y : causé au seuil de 5% par WTI
         NFP : causé au seuil de 1% par WTI et 5% par les taux
 
+Modèle 7 - Brent
+    Nombre de retards optimal : 6
+    Variables explicatives :
+        US10Y
+        FED_ER
+        Indice_commo
+    R² : 0,186
+    R² ajusté : 0,13
+    Validation du modèle :
+        Résidus : grosse volatilité, surtout récemment
+        Ljung Box : pas d'autocorrélation
+    Relations LT :
+        I(1) : Brent, US10Y, Indice_commo
+        Eigenvalues : stat de test supérieur aux valeurs critiques donc 2 relations de LT
+    Relations causals de Granger :
+        Brent : US10Y presque au seuil des 10%, sinon rien
+        US10Y : Brent au seuil de 5%, Indice_commo presque au seuil de 1%
+        FED_ER : Brent, US10Y, Indice_commo tous 3 causales au seuil de 1%
+        Indice_commo : Brent presque au seuil de 5%, US10Y au seuil de 10%
 
+Modèle 8 - Cacao
+    Nombre de retards optimal : 3
+    Variables explicatives :
+        FED_ER
+        M2
+        USD
+    R² : 0.99
+    R² ajusté : 0.99
+    Validation du modèle :
+        Résidus : beaucoup de vol au début mais se calme après
+        Ljung Box : pas de problème d'autocorrélation
+    Relations LT : cacao I(0) donc ne peut pas se faire
+    Relations causals de Granger :
+        Cacao : rien
+        FED_ER : cacao et M2 causales au seuil de 1%
+        M2 : rien
+        USDEUR : M2 causale au seuil de 10%
+
+Modèle 
+    Nombre de retards optimal :
+    Variables explicatives :
+    R² :
+    R² ajusté :
+    Validation du modèle :
+        Résidus :
+        Ljung Box :
+    Relations LT :
+        I(1) :
+        Eigenvalues :
+    Relations causals de Granger :
+
+Modèle 
+    Nombre de retards optimal :
+    Variables explicatives :
+    R² :
+    R² ajusté :
+    Validation du modèle :
+        Résidus :
+        Ljung Box :
+    Relations LT :
+        I(1) :
+        Eigenvalues :
+    Relations causals de Granger :
+
+Modèle 
+    Nombre de retards optimal :
+    Variables explicatives :
+    R² :
+    R² ajusté :
+    Validation du modèle :
+        Résidus :
+        Ljung Box :
+    Relations LT :
+        I(1) :
+        Eigenvalues :
+    Relations causals de Granger :
+
+Modèle 
+    Nombre de retards optimal :
+    Variables explicatives :
+    R² :
+    R² ajusté :
+    Validation du modèle :
+        Résidus :
+        Ljung Box :
+    Relations LT :
+        I(1) :
+        Eigenvalues :
+    Relations causals de Granger :
 
 var_exo_noms  <- list("US10Y", "FED_ER", "FED_BS", "CPI_CORE", "M2", "M3", "USDEUR", "NFP", "VIX", "Indice_commo")

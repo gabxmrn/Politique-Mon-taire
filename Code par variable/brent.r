@@ -10,8 +10,8 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Importation des données
 var_endo <- read_excel("data.xlsx", sheet = "Variables Expliquées")
 var_exo <- read_excel("data.xlsx", sheet = "Variables Explicatives")
-nom_variable <- "Cacao"
-var_exo_noms  <- list("FED_ER", "M2", "USDEUR")
+nom_variable <- "Brent"
+var_exo_noms  <- list("US10Y", "FED_ER", "Indice_commo")
 
 # Stationnarisation - variables endogènes
 for (col_name in names(var_endo)) {
@@ -57,43 +57,58 @@ residuals <- residuals(model_var)
 model_var_validation(residuals[, nom_variable],
                      nom_variable, "Output/VAR2/")
 
+"On garde uniquement les séries I(1) donc on retire systématiquement
+    - CPI_CORE
+    - FED_LB / UB / ER
+    - NFP
+    - VIX
+    - Blé
+    - Cacao
+"
+
+data_statio_coint <- data[, c(nom_variable, "US10Y", "Indice_commo")]
+
+jotest <- ca.jo(data_statio_coint, type = "eigen")
+print(summary(jotest))
+
+
 # Test de causalité de Granger
-cat("\nTest de causalité de Granger sur le Cacao :\n\n")
-granger_vix <- grangertest(data[, "Cacao"] ~ data[, "FED_ER"])
+cat("\nTest de causalité de Granger sur le Brent :\n\n")
+granger_vix <- grangertest(data[, "Brent"] ~ data[, "US10Y"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "Cacao"] ~ data[, "M2"])
+granger_nfp <- grangertest(data[, "Brent"] ~ data[, "FED_ER"])
 print(summary(granger_nfp))
 
-granger_ic <- grangertest(data[, "Cacao"] ~ data[, "USDEUR"])
+granger_ic <- grangertest(data[, "Brent"] ~ data[, "Indice_commo"])
 print(summary(granger_ic))
 
 cat("\nTest de causalité de Granger sur le US10Y :\n\n")
-granger_vix <- grangertest(data[, "FED_ER"] ~ data[, "Cacao"])
+granger_vix <- grangertest(data[, "US10Y"] ~ data[, "Brent"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "FED_ER"] ~ data[, "M2"])
+granger_nfp <- grangertest(data[, "US10Y"] ~ data[, "FED_ER"])
 print(summary(granger_nfp))
 
-granger_nfp <- grangertest(data[, "FED_ER"] ~ data[, "USDEUR"])
+granger_nfp <- grangertest(data[, "US10Y"] ~ data[, "Indice_commo"])
 print(summary(granger_nfp))
 
-cat("\nTest de causalité de Granger sur M2 :\n\n")
-granger_vix <- grangertest(data[, "M2"] ~ data[, "Cacao"])
+cat("\nTest de causalité de Granger sur FED_ER :\n\n")
+granger_vix <- grangertest(data[, "FED_ER"] ~ data[, "Brent"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "M2"] ~ data[, "FED_ER"])
+granger_nfp <- grangertest(data[, "FED_ER"] ~ data[, "US10Y"])
 print(summary(granger_nfp))
 
-granger_nfp <- grangertest(data[, "M2"] ~ data[, "USDEUR"])
+granger_nfp <- grangertest(data[, "FED_ER"] ~ data[, "Indice_commo"])
 print(summary(granger_nfp))
 
-cat("\nTest de causalité de Granger sur USDEUR :\n\n")
-granger_vix <- grangertest(data[, "USDEUR"] ~ data[, "Cacao"])
+cat("\nTest de causalité de Granger sur Indice_commo :\n\n")
+granger_vix <- grangertest(data[, "Indice_commo"] ~ data[, "Brent"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "USDEUR"] ~ data[, "FED_ER"])
+granger_nfp <- grangertest(data[, "Indice_commo"] ~ data[, "US10Y"])
 print(summary(granger_nfp))
 
-granger_nfp <- grangertest(data[, "USDEUR"] ~ data[, "M2"])
+granger_nfp <- grangertest(data[, "Indice_commo"] ~ data[, "FED_ER"])
 print(summary(granger_nfp))
