@@ -10,8 +10,8 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Importation des données
 var_endo <- read_excel("data.xlsx", sheet = "Variables Expliquées")
 var_exo <- read_excel("data.xlsx", sheet = "Variables Explicatives")
-nom_variable <- "Mais"
-var_exo_noms  <- list("FED_ER", "USDEUR")
+nom_variable <- "Gas"
+var_exo_noms  <- list("M3", "Indice_commo")
 
 # Stationnarisation - variables endogènes
 for (col_name in names(var_endo)) {
@@ -66,30 +66,30 @@ model_var_validation(residuals[, nom_variable],
     - Cacao
 "
 
-data_statio_coint <- data[, c(nom_variable, "M2")]
+data_statio_coint <- data[, c(nom_variable, "M3", "Indice_commo")]
 
 jotest <- ca.jo(data_statio_coint, type = "eigen")
 print(summary(jotest))
 
 
 # Test de causalité de Granger
-cat("\nTest de causalité de Granger sur le soja :\n\n")
-granger_vix <- grangertest(data[, "Soja"] ~ data[, "M2"])
+cat("\nTest de causalité de Granger sur le gas :\n\n")
+granger_vix <- grangertest(data[, "Gas"] ~ data[, "M3"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "Soja"] ~ data[, "VIX"])
+granger_nfp <- grangertest(data[, "Gas"] ~ data[, "Indice_commo"])
 print(summary(granger_nfp))
 
-cat("\nTest de causalité de Granger sur le VIX :\n\n")
-granger_vix <- grangertest(data[, "VIX"] ~ data[, "Soja"])
+cat("\nTest de causalité de Granger sur le Indice_commo :\n\n")
+granger_vix <- grangertest(data[, "Indice_commo"] ~ data[, "Gas"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "VIX"] ~ data[, "M2"])
+granger_nfp <- grangertest(data[, "Indice_commo"] ~ data[, "M3"])
 print(summary(granger_nfp))
 
-cat("\nTest de causalité de Granger sur M2 :\n\n")
-granger_vix <- grangertest(data[, "M2"] ~ data[, "VIX"])
+cat("\nTest de causalité de Granger sur M3 :\n\n")
+granger_vix <- grangertest(data[, "M3"] ~ data[, "Indice_commo"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "M2"] ~ data[, "Soja"])
+granger_nfp <- grangertest(data[, "M3"] ~ data[, "Gas"])
 print(summary(granger_nfp))

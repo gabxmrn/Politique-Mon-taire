@@ -11,8 +11,8 @@ Modèle 1 - Argent
         Ljung Box : p-value > 5% donc pas d'autocorrélation des résidus
     Relation de LT :
         On ne peut garder que l'argent et M2 pour le test car les séries doivent être I1
-        Eigenvalue : stat de test > seuils donc le range de la matrice est inférieur ou égal à 1
-    Relation causale de Granger :
+        Eigenvalue : stat de test > seuils donc le range de la matrice est inférieur ou égal à 1 qui existent
+    Relations causales de Granger :
         Argent : causée par NFP au seuil de 10%, M2 au seuil de 5%
         VIX : causée par M2 au seuil de 1%
         NFP : causée par argent au seuil de 5%, VIX au seuil de 1%
@@ -31,7 +31,51 @@ Modèle 2 - Blé
         Ljung Box : p-value > 5% donc pas d'autocorrélation des résidus
     Relation de LT
         La série du blé est I(0) donc on ne peut pas le faire
-    Relation causale de Granger :
+    Relations causales de Granger :
         Blé : rien
         VIX : rien
         FED_ER : causé par le VIX au seuil de 1%
+
+Modèle 3 - Gas
+    Nombre de retard optimal : 10
+    Variables explicatives :
+        M3 : ?
+        Indice_commo : l'indice commo suit exactement les prix du brent, le prix du gas est indexé sur les prix de l'élec donc logique
+    R² : 0,195
+    R² ajuste : 0,129
+    Validation du modèle :
+        Résidus : on peut identifier les périodes de crises car elles ont des résidus plus volatiles (2011 / 2020)
+        Ljung Box : pas d'autocorrélation des résidus
+    Relations LT :
+        Séries I(1) : Gas, M3, Indice_commo
+        Eigenvalues : stat_test > seuil pour r <= 2 donc le rang de la matrice est inférieur ou égale à 2 donc relations de LT qui existent 
+    Relations causales de Granger :
+        Gas : rien
+        Indice_commo : causé par gas au seuil de 10%
+        M3 : rien
+
+Modèle 4 - Soja
+    Nombre de retard optimal : 9
+    Variables explicatives :
+        M2 : ?
+        VIX : indice de la peur, ressource alimentaire
+    R² : 0,10
+    R² ajuste : 0,035 
+    Validation du modèle :
+        Résidus : on a des résidus très volatiles
+        Ljung Box : pas d'autocorrélation des résidus
+    Relations LT :
+        Séries I(1) : Gas et M2
+        Eigenvalues : stat de test supérieur aux valeurs critiques donc 1 relation de LT
+    Relations causales de Granger :
+        Soja : rien
+        VIX : causé par M2 au seuil de 5%
+        M2 : causé par VIX au seuil de 5% (limite 1%)
+
+Modèle 5 - mais
+    Littéralement inexplicable avec notre choix de Variables
+    Impossible de faire un modèle qui ait plus de 3% de R², toutes les variables sont pas significatives (sauf mais 1l à 10%)
+    Explication possible : les prix du mais ont fait un pic début des années 2000 et depuis décroit avec des mouvement qui ont rien à voir avec ceux des autres variables
+
+
+var_exo_noms  <- list("US10Y", "FED_ER", "FED_BS", "CPI_CORE", "M2", "M3", "USDEUR", "NFP", "VIX", "Indice_commo")

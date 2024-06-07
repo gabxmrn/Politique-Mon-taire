@@ -10,8 +10,8 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Importation des données
 var_endo <- read_excel("data.xlsx", sheet = "Variables Expliquées")
 var_exo <- read_excel("data.xlsx", sheet = "Variables Explicatives")
-nom_variable <- "Mais"
-var_exo_noms  <- list("FED_ER", "USDEUR")
+nom_variable <- "Soja"
+var_exo_noms  <- list("M2", "VIX")
 
 # Stationnarisation - variables endogènes
 for (col_name in names(var_endo)) {
