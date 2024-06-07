@@ -77,5 +77,24 @@ Modèle 5 - mais
     Impossible de faire un modèle qui ait plus de 3% de R², toutes les variables sont pas significatives (sauf mais 1l à 10%)
     Explication possible : les prix du mais ont fait un pic début des années 2000 et depuis décroit avec des mouvement qui ont rien à voir avec ceux des autres variables
 
+Modèle 6 - WTI
+    Nombre de retards optimal : 1
+    Variables explicatives :
+        US10Y
+        NFP
+    R² : 0,07
+    R² ajusté : 0,063
+    Validation du modèle :
+        Résidus : plus on avance, plus la valeur des résidus est importante
+        Ljung Box : pas d'autocorrélation des résidus
+    Relations LT : 
+        I(1): WTI, US10Y
+        stat de test supérieur aux valeurs critiques donc 1 relation de LT
+    Relations causales de Granger :
+        WTI : causé au seuil de 5% par US10Y puis au seuil de 1% par NFP
+        US10Y : causé au seuil de 5% par WTI
+        NFP : causé au seuil de 1% par WTI et 5% par les taux
+
+
 
 var_exo_noms  <- list("US10Y", "FED_ER", "FED_BS", "CPI_CORE", "M2", "M3", "USDEUR", "NFP", "VIX", "Indice_commo")
