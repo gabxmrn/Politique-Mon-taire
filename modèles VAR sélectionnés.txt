@@ -133,56 +133,74 @@ Modèle 8 - Cacao
         M2 : rien
         USDEUR : M2 causale au seuil de 10%
 
-Modèle 
-    Nombre de retards optimal :
-    Variables explicatives :
-    R² :
-    R² ajusté :
+Modèle 9 - Café
+    Nombre de retards optimal : 6
+    Variables explicatives : 
+        FED_ER
+        FED_BS
+        M2
+        NFP
+        VIX
+    R² : 0,14
+    R² ajusté : 0,06
     Validation du modèle :
-        Résidus :
-        Ljung Box :
+        Résidus : ok
+        Ljung Box : pas d'autocorrélation
     Relations LT :
-        I(1) :
-        Eigenvalues :
+        I(1) : M2, FED_BS
+        Eigenvalues : stat de test supérieur aux valeurs critiques donc 2 relations de LT
     Relations causals de Granger :
+        Café : rien
+        FED_ER : rien
+        FED_BS : causé par le café au seuil de 5%
+        M2 : causé par le café au seuil de 1%
+        NFP : rien
+        VIX : rien
 
-Modèle 
-    Nombre de retards optimal :
+Modèle 10 - Cuivre
+    Nombre de retards optimal : 10
     Variables explicatives :
-    R² :
-    R² ajusté :
+        FED_ER
+        CPI_CORE
+        M2
+        NFP
+        VIX
+    R² : 0,26
+    R² ajusté : 0,13
     Validation du modèle :
-        Résidus :
-        Ljung Box :
+        Résidus : ok
+        Ljung Box : pas d'autocorrélation des résidus
     Relations LT :
-        I(1) :
-        Eigenvalues :
+        I(1) : cuivre et M2
+        Eigenvalues : stat de test supérieur aux valeurs critiques donc 1 relation de LT
     Relations causals de Granger :
+        Cuivre : M2 au seuil de 1%
+        FED_ER : cuivre au seuil de 10%, CPI_CORE et NFP au seuil de 5%, VIX et M2 au seuil de 1%
+        CPI_CORE : cuivre et FED_ER au seuil de 5%, VIX au seuil de 10%
+        M2 : VIX au seuil de 5%
+        NFP : cuivre au seuil de 5%, CPI_CORE et VIX au seuil de 1%
+        VIX : M2 au seuil de 5%
 
-Modèle 
-    Nombre de retards optimal :
+Modèle 11 - Or
+    Nombre de retards optimal : 1
     Variables explicatives :
-    R² :
-    R² ajusté :
+        FED_ER
+        FED_BS
+        M2
+        NFP
+        VIX
+    R² : 0,03
+    R² ajusté : 0,02
     Validation du modèle :
-        Résidus :
-        Ljung Box :
+        Résidus : beaucoup moins de vol sur le début de la série de données
+        Ljung Box : ok sauf pour après 10 retards mais on a besoin de valider que pour le premier retard
     Relations LT :
-        I(1) :
-        Eigenvalues :
+        I(1) : M2, FED_BS, or
+        Eigenvalues : stat de test supérieur aux valeurs critiques donc 2 relations de LT
     Relations causals de Granger :
-
-Modèle 
-    Nombre de retards optimal :
-    Variables explicatives :
-    R² :
-    R² ajusté :
-    Validation du modèle :
-        Résidus :
-        Ljung Box :
-    Relations LT :
-        I(1) :
-        Eigenvalues :
-    Relations causals de Granger :
-
-var_exo_noms  <- list("US10Y", "FED_ER", "FED_BS", "CPI_CORE", "M2", "M3", "USDEUR", "NFP", "VIX", "Indice_commo")
+        Or : FED_BS au seuil de 10%
+        FED_ER : rien
+        FED_BS : rien
+        M2 : causé par or au seuil de 5%
+        NFP : rien
+        VIX : rien

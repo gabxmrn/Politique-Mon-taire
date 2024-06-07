@@ -10,8 +10,8 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Importation des données
 var_endo <- read_excel("data.xlsx", sheet = "Variables Expliquées")
 var_exo <- read_excel("data.xlsx", sheet = "Variables Explicatives")
-nom_variable <- "Gas"
-var_exo_noms  <- list("M3", "Indice_commo")
+nom_variable <- "Or"
+var_exo_noms  <- list("FED_ER", "FED_BS", "M2", "NFP", "VIX")
 
 # Stationnarisation - variables endogènes
 for (col_name in names(var_endo)) {
@@ -66,29 +66,40 @@ model_var_validation(residuals[, nom_variable],
     - Cacao
 "
 
-data_statio_coint <- data[, c(nom_variable, "M3", "Indice_commo")]
+data_statio_coint <- data[, c(nom_variable, "M2", "FED_BS")]
 
 jotest <- ca.jo(data_statio_coint, type = "eigen")
 print(summary(jotest))
 
 # Test de causalité de Granger
-cat("\nTest de causalité de Granger sur le gas :\n\n")
-granger_vix <- grangertest(data[, "Gas"] ~ data[, "M3"])
+cat("\nTest de causalité de Granger sur l'or :\n\n")
+granger_vix <- grangertest(data[, "Or"] ~ data[, "FED_ER"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "Gas"] ~ data[, "Indice_commo"])
-print(summary(granger_nfp))
-
-cat("\nTest de causalité de Granger sur le Indice_commo :\n\n")
-granger_vix <- grangertest(data[, "Indice_commo"] ~ data[, "Gas"])
+granger_vix <- grangertest(data[, "Or"] ~ data[, "FED_BS"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "Indice_commo"] ~ data[, "M3"])
+granger_nfp <- grangertest(data[, "Or"] ~ data[, "M2"])
 print(summary(granger_nfp))
 
-cat("\nTest de causalité de Granger sur M3 :\n\n")
-granger_vix <- grangertest(data[, "M3"] ~ data[, "Indice_commo"])
+granger_ic <- grangertest(data[, "Or"] ~ data[, "NFP"])
+print(summary(granger_ic))
+
+granger_ic <- grangertest(data[, "Or"] ~ data[, "VIX"])
+print(summary(granger_ic))
+
+cat("\nTest de causalité de Granger de l'or :\n\n")
+granger_vix <- grangertest(data[, "FED_ER"] ~ data[, "Or"])
 print(summary(granger_vix))
 
-granger_nfp <- grangertest(data[, "M3"] ~ data[, "Gas"])
+granger_vix <- grangertest(data[, "FED_BS"] ~ data[, "Or"])
+print(summary(granger_vix))
+
+granger_nfp <- grangertest(data[, "M2"] ~ data[, "Or"])
 print(summary(granger_nfp))
+
+granger_ic <- grangertest(data[, "NFP"] ~ data[, "Or"])
+print(summary(granger_ic))
+
+granger_ic <- grangertest(data[, "VIX"] ~ data[, "Or"])
+print(summary(granger_ic))
