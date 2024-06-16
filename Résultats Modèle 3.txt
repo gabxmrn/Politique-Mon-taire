@@ -1,0 +1,109 @@
+Modèle 1 - Argent
+    Nombre de retards optimaux : 6
+    Validation du modèle : ok
+    Relation de LT : r <= 2
+    Relations causales de Granger :
+        Argent : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : Argent au seuil 5%
+        M3 : FED_ER au seuil de 1%
+
+Modèle 2 - Blé
+    Nombre de retards optimaux : 3
+    Validation du modèle : ok
+    Relation de LT : série I(0)
+    Relations causales de Granger :
+        Blé : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER et Blé au seuil de 1%
+
+Modèle 3 - Brent
+    Nombre de retards optimaux : 1
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Brent : FED_BS au seuil de 10%
+        FED_ER : FED_BS et Brent au seuil de 1%, M3 au seuil de 10%
+        FED_BS : Brent au seuil de 1%
+        M3 : FED_ER au seuil de 1%
+
+Modèle 4 - Cacao
+    Nombre de retards optimaux : 3
+    Validation du modèle : ok
+    Relation de LT : série I(0)
+    Relations causales de Granger :
+        Cacao : rien
+        FED_ER : FED_BS et Cacao au seuil de 1%, M3 au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER au seuil de 1%
+
+Modèle 5 - Café
+    Nombre de retards optimaux : 6
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Café : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : Café au seuil de 2%
+        M3 : FED_ER au seuil de 1%
+
+Modèle 6 - Cuivre
+    Nombre de retards optimaux : 10
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Cuivre : rien
+        FED_ER : FED_BS au seuil de 1%, M3 et Cuivre au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER au seuil de 1%
+
+Modèle 7 - Gas
+    Nombre de retards optimaux : 9
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Gas : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER au seuil de 1%
+
+Modèle 8 - Maïs
+    Nombre de retards optimaux : 1
+    Validation du modèle : ok jusqu'au retard 12 mais validation pour 1 retard suffit
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Maïs : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER au seuil de 1%
+
+Modèle 9 - Or
+    Nombre de retards optimaux : 1
+    Validation du modèle : ok jusqu'au retard 11 mais validation pour 1 retard suffit
+    Relation de LT : r <= 2
+    Relations causales de Granger :
+        Or : FED_BS au seuil de 10%
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : rien
+        M3 : FED_ER au seuil de 1%
+
+Modèle 10 - Soja
+    Nombre de retards optimaux : 9
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        Soja : rien
+        FED_ER : FED_BS au seuil de 1%, M3 au seuil de 10%
+        FED_BS : Soja au seuil de 5%
+        M3 : FED_ER au seuil de 1%
+
+Modèle 11 - WTI
+    Nombre de retards optimaux : 1
+    Validation du modèle : ok
+    Relation de LT : r >= 2
+    Relations causales de Granger :
+        WTI : rien
+        FED_ER : FED_BS et WTI au seuil de 1%, M3 au seuil de 10%
+        FED_BS : WTI au seuil de 1%
+        M3 : FED_ER au seuil de 1%

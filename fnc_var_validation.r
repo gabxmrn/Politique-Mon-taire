@@ -4,10 +4,6 @@ library(LSTS)
 model_var_validation <- function(residuals, col_name, chemin_fichier) {
   # Fonction qui qui permet de valider un modèle VAR en graphant : les résidus, l'ACF, le PCF, et les stats / p-values de Ljung Box sur 12 retards
 
-  # Création du dossier relatif à chaque variable
-  dir.create(paste0("Output/VAR1/", col_name),
-             recursive = TRUE, showWarnings = FALSE)
-
   # Graphique des résidus
   chemin <- paste0(chemin_fichier, col_name, "/graph_residus.png")
   png(chemin)
